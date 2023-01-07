@@ -1,0 +1,38 @@
+  document.addEventListener('DOMContentLoaded', function() {
+    function wrapParallaxFigures() {
+      // Find all figure elements with the parallax class
+      const parallaxFigures = document.querySelectorAll('figure.parallax');
+      
+      // Loop through the parallax figures
+      for (const figure of parallaxFigures) {
+        // Create a new img element with the same src as the figure
+      const img = document.createElement('img');
+      img.src = figure.querySelector('img').src;
+  
+      // Add the jarallax-img class to the img element
+      img.classList.add('jarallax-img');
+  
+      // Insert the img element before the figure in the DOM tree
+      figure.parentNode.insertBefore(img, figure);
+  
+      // Remove the figure element from the DOM
+      figure.parentNode.removeChild(figure);
+
+        // Create a new div element with the minchia class
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('jarallax', 'width-100', 'height-100', 'data-speed=0.6');
+  
+        // Insert the div element before the figure in the DOM tree
+        img.parentNode.insertBefore(wrapper, img);
+  
+        // Move the figure element inside the div element
+        wrapper.appendChild(img);
+      }
+    }
+  
+    wrapParallaxFigures();
+
+    jarallax(document.querySelectorAll('.jarallax'), {
+      speed: 0.6,
+    });
+  });
